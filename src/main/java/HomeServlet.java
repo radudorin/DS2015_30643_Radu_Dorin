@@ -1,6 +1,9 @@
 import entities.DAO.EntityDAO;
 import entities.User;
 import entities.Utils.HibernateUtils;
+import entities.Utils.TextUtils;
+import entities.constants.Jsp;
+import entities.constants.Keys;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +20,8 @@ import java.io.IOException;
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
 
+    public final String TAG = getClass().getSimpleName();
+
     private EntityDAO<User> entityDao;
 
     @Override
@@ -27,15 +32,17 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
-
-        if(session != null && session.getAttribute("user") != null) {
-            System.out.println("session not null");
-            resp.sendRedirect("user.jsp");
-            session.invalidate();
+        if (session.getAttribute(Keys.SESSION_USER_LEY) != null) {
+            User user = (User) session.getAttribute(Keys.SESSION_USER_LEY);
+            if (user.getRole().equals(Keys.USER_ROLE)) {
+                resp.sendRedirect(Jsp.USER_JSP);
+            } else if (user.getRole().equals(Keys.ADMIN_ROLE)) {
+                resp.sendRedirect(Jsp.ADMIN_JSP);
+            }
         } else {
-            session.setAttribute("user", new User());
-            System.out.println("session null");
-            resp.sendRedirect("admin.jsp");
+            session.invalidate();
+            System.out.println(TAG + " session null");
+            resp.sendRedirect(Jsp.LOGIN_JSP);
         }
 
     }

@@ -11,6 +11,9 @@
     <title></title>
 </head>
 <body>
-User
+<br>
+<form action="/admin">
+  <input type="submit" name="logout" value="Logout"/>
+</form>
 </body>
 </html>
