@@ -15,14 +15,17 @@
         <property name="hibernate.connection.url">
             jdbc:mysql://localhost:3306/asssignment1
         </property>
+
         <property name="hibernate.connection.username">
             root
         </property>
+
         <property name="hibernate.connection.password">
             admin
         </property>
 
         <mapping resource="user.hbm.xml"/>
+        <mapping resource="flight.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

@@ -1,4 +1,4 @@
-package entities.Utils;
+package Utils;
 
 /**
  * Created by radud on 28/10/2015.

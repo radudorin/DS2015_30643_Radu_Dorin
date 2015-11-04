@@ -1,9 +1,8 @@
 import entities.DAO.EntityDAO;
 import entities.User;
-import entities.Utils.HibernateUtils;
-import entities.Utils.TextUtils;
-import entities.constants.Jsp;
-import entities.constants.Keys;
+import Utils.HibernateUtils;
+import Cnstants.Jsp;
+import Cnstants.Keys;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,7 +40,6 @@ public class HomeServlet extends HttpServlet {
             }
         } else {
             session.invalidate();
-            System.out.println(TAG + " session null");
             resp.sendRedirect(Jsp.LOGIN_JSP);
         }
 

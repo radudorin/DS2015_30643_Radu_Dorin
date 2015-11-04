@@ -1,9 +1,9 @@
 import entities.DAO.EntityDAO;
 import entities.User;
-import entities.Utils.HibernateUtils;
-import entities.Utils.TextUtils;
-import entities.constants.Jsp;
-import entities.constants.Keys;
+import Utils.HibernateUtils;
+import Utils.TextUtils;
+import Cnstants.Jsp;
+import Cnstants.Keys;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.security.Key;
 
 /**
  * Created by radud on 27/10/2015.
@@ -36,6 +35,7 @@ public class LoginServlet extends HttpServlet {
 
         if (session.getAttribute(Keys.SESSION_USER_LEY) != null) {
             resp.sendRedirect(Jsp.ERROR_JSP);
+            System.out.println(TAG + " Error, session null.");
             return;
         }
 
@@ -44,6 +44,7 @@ public class LoginServlet extends HttpServlet {
 
         if (TextUtils.isEmpty(username) && TextUtils.isEmpty(password)) {
             resp.sendRedirect(Jsp.ERROR_JSP);
+            System.out.println(TAG + " Error, username or password are empty.");
             return;
         }
 
@@ -51,6 +52,7 @@ public class LoginServlet extends HttpServlet {
 
         if (user == null) {
             resp.sendRedirect(Jsp.ERROR_JSP);
+            System.out.println(TAG + " Error, user is null.");
             return;
         }
 
@@ -62,11 +64,13 @@ public class LoginServlet extends HttpServlet {
             } else {
                 //unknown role
                 resp.sendRedirect(Jsp.ERROR_JSP);
+                System.out.println(TAG + " Error, no such role");
                 return;
             }
             session.setAttribute(Keys.SESSION_USER_LEY, user);
         } else {
             resp.sendRedirect(Jsp.ERROR_JSP);
+            System.out.println(TAG + " Error, password didn't match.");
             return;
         }
 

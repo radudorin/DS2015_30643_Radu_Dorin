@@ -11,9 +11,6 @@
     <title></title>
 </head>
 <body>
-<br>
-<form action="/admin">
-  <input type="submit" name="logout" value="Logout"/>
-</form>
+<jsp:forward page="/admin"/>
 </body>
 </html>
