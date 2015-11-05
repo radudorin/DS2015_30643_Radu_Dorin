@@ -1,8 +1,12 @@
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import entities.DAO.EntityDAO;
 import entities.User;
 import Utils.HibernateUtils;
 import Cnstants.Jsp;
 import Cnstants.Keys;
+import model.GoogleResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * Created by radud on 27/10/2015.
@@ -20,7 +26,6 @@ import java.io.IOException;
 public class HomeServlet extends HttpServlet {
 
     public final String TAG = getClass().getSimpleName();
-
     private EntityDAO<User> entityDao;
 
     @Override

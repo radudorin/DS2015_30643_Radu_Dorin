@@ -14,9 +14,11 @@
 
         <property name="flightNr" column="flight_nr" type="int"/>
         <property name="airplaneType" column="airplane_type" type="string"/>
-        <property name="departureCity" column="departure_city" type="string"/>
-        <property name="departureDateAndHour" column="departure_date_and_hour" type="string"/>
-        <property name="arrivalCity" column="arrival_city" type="string"/>
-        <property name="arrivalDateAndHour" column="arrival_date_and_hour" type="string"/>
+        <many-to-one name="departureCity" column="departure_city" class="entities.City" cascade="save-update"
+                     lazy="false"/>
+        <property name="departureDateAndHour" column="departure_date_and_hour" type="java.sql.Timestamp"/>
+        <many-to-one name="arrivalCity" column="arrival_city" class="entities.City" cascade="save-update"
+                     lazy="false"/>
+        <property name="arrivalDateAndHour" column="arrival_date_and_hour" type="java.sql.Timestamp"/>
     </class>
 </hibernate-mapping>

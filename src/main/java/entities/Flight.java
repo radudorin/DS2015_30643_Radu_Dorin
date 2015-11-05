@@ -1,5 +1,7 @@
 package entities;
 
+import java.sql.Timestamp;
+
 /**
  * Created by radud on 28/10/2015.
  */
@@ -7,10 +9,10 @@ public class Flight {
     private int id;
     private int flightNr;
     private String airplaneType;
-    private String departureCity;
-    private String departureDateAndHour;
-    private String arrivalCity;
-    private String arrivalDateAndHour;
+    private City departureCity;
+    private Timestamp departureDateAndHour;
+    private City arrivalCity;
+    private Timestamp arrivalDateAndHour;
 
     public int getId() {
         return id;
@@ -36,35 +38,35 @@ public class Flight {
         this.airplaneType = airplaneType;
     }
 
-    public String getDepartureCity() {
-        return departureCity;
-    }
-
-    public void setDepartureCity(String departureCity) {
+    public void setDepartureCity(City departureCity) {
         this.departureCity = departureCity;
     }
 
-    public String getDepartureDateAndHour() {
+    public Timestamp getDepartureDateAndHour() {
         return departureDateAndHour;
     }
 
-    public void setDepartureDateAndHour(String departureDateAndHour) {
+    public void setDepartureDateAndHour(Timestamp departureDateAndHour) {
         this.departureDateAndHour = departureDateAndHour;
     }
 
-    public String getArrivalCity() {
+    public City getDepartureCity() {
+        return departureCity;
+    }
+
+    public City getArrivalCity() {
         return arrivalCity;
     }
 
-    public void setArrivalCity(String arrivalCity) {
+    public void setArrivalCity(City arrivalCity) {
         this.arrivalCity = arrivalCity;
     }
 
-    public String getArrivalDateAndHour() {
+    public Timestamp getArrivalDateAndHour() {
         return arrivalDateAndHour;
     }
 
-    public void setArrivalDateAndHour(String arrivalDateAndHour) {
+    public void setArrivalDateAndHour(Timestamp arrivalDateAndHour) {
         this.arrivalDateAndHour = arrivalDateAndHour;
     }
 }

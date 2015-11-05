@@ -31,9 +31,15 @@
                 <input type="hidden" id="flight${flight.id}" name="flightId" value="${flight.id}">
                 <td><c:out value="${flight.flightNr}"/></td>
                 <td><c:out value="${flight.airplaneType}"/></td>
-                <td><c:out value="${flight.departureCity}"/></td>
+                <td>
+                    <c:out value="${flight.departureCity.latitude}"/>
+                    <c:out value="${flight.departureCity.longitude}"/>
+                </td>
                 <td><c:out value="${flight.departureDateAndHour}"/></td>
-                <td><c:out value="${flight.arrivalCity}"/></td>
+                <td>
+                    <c:out value="${flight.arrivalCity.latitude}"/>
+                    <c:out value="${flight.arrivalCity.longitude}"/>
+                </td>
                 <td><c:out value="${flight.arrivalDateAndHour}"/></td>
             </tr>
         </form>

@@ -26,6 +26,7 @@
 
         <mapping resource="user.hbm.xml"/>
         <mapping resource="flight.hbm.xml"/>
+        <mapping resource="city.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>
