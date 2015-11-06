@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DS2015_30643_Radu_Dorin_war_exploded/WEB-INF/lib/jta-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DS2015_30643_Radu_Dorin_war_exploded/WEB-INF/lib/jstl-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DS2015_30643_Radu_Dorin_war_exploded/WEB-INF/lib/hibernate-commons-annotations-5.0.0.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DS2015_30643_Radu_Dorin_war_exploded/WEB-INF/lib/mysql-connector-java-5.1.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DS2015_30643_Radu_Dorin_war_exploded/WEB-INF/lib/hibernate-core-5.0.0.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DS2015_30643_Radu_Dorin_war_exploded/WEB-INF/lib/javassist-3.18.1-GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DS2015_30643_Radu_Dorin_war_exploded/WEB-INF/lib/jboss-logging-3.3.0.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DS2015_30643_Radu_Dorin_war_exploded/WEB-INF/lib/dom4j-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DS2015_30643_Radu_Dorin_war_exploded/WEB-INF/lib/hibernate-jpa-2.1-api-1.0.0.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DS2015_30643_Radu_Dorin_war_exploded/WEB-INF/lib/commons-lang3-3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DS2015_30643_Radu_Dorin_war_exploded/WEB-INF/lib/antlr-2.7.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DS2015_30643_Radu_Dorin_war_exploded/WEB-INF/lib/gson-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DS2015_30643_Radu_Dorin_war_exploded/WEB-INF/lib/commons-logging-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DS2015_30643_Radu_Dorin_war_exploded/WEB-INF/lib/xml-apis-1.0.b2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DS2015_30643_Radu_Dorin_war_exploded/WEB-INF/lib/jandex-1.2.2.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DS2015_30643_Radu_Dorin_war_exploded/WEB-INF/lib/geronimo-jta_1.1_spec-1.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
