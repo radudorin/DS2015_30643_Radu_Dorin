@@ -9,17 +9,18 @@ import javax.persistence.*;
 public class Transaction {
 
     @Id
+    @Column(name = "transaction_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @ManyToOne
-    @JoinColumn(name = "member_id", nullable = false)
+    @JoinColumn(name = "member_id")
     private Member member;
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_id")
     private Product product;
     private int quantity;
     @ManyToOne
-    @JoinColumn(name = "status_id", nullable = false)
+    @JoinColumn(name="transaction_status_id")
     private TransactionStatus transactionStatus;
 
     public Transaction() {

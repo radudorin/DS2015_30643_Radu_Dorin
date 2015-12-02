@@ -7,16 +7,18 @@ import java.util.List;
  * Created by radud on 22/11/2015.
  */
 @Entity
-@Table(name = "transaction_status")
+@Table(name = "transaction_status", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "status_name") })
 public class TransactionStatus {
 
     @Id
+    @Column(name = "transaction_status_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "status_name")
     private String name;
     @OneToMany
-    @JoinColumn(name = "status_id", nullable = false)
+    @JoinColumn(name="transaction_status_id")
     List<Transaction> members;
 
     public TransactionStatus() {

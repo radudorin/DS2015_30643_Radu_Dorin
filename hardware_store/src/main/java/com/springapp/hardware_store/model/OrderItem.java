@@ -10,13 +10,14 @@ import java.util.List;
 public class OrderItem {
 
     @Id
+    @Column(name = "order_item_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "order_id")
     private ShoppingCart shoppingCart;
     @OneToMany
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_id")
     private List<Product> product;
 
     public OrderItem() {

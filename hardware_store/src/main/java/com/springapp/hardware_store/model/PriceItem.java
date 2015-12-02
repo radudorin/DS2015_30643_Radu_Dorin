@@ -10,10 +10,11 @@ import java.sql.Timestamp;
 public class PriceItem {
 
     @Id
+    @Column(name = "price_item_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_id")
     private Product product;
     @Column(name = "product_price")
     private double price;

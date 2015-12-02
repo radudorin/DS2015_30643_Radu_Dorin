@@ -6,16 +6,18 @@ import java.util.List;
  * Created by radud on 22/11/2015.
  */
 @Entity
-@Table(name = "order_status")
+@Table(name = "order_status", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "status_name") })
 public class OrderStatus {
 
     @Id
+    @Column(name = "order_status_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "status_name")
     private String statusName;
     @OneToMany
-    @JoinColumn(name = "order_status_id")
+    @JoinColumn(name="order_status_id")
     List<ShoppingCart> shoppingCarts;
 
     public OrderStatus() {

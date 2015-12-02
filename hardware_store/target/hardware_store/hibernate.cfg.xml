@@ -11,5 +11,17 @@
         <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
 
+        <mapping class="com.springapp.hardware_store.model.Member"/>
+        <mapping class="com.springapp.hardware_store.model.MemberRole"/>
+        <mapping class="com.springapp.hardware_store.model.OrderItem"/>
+        <mapping class="com.springapp.hardware_store.model.OrderStatus"/>
+        <mapping class="com.springapp.hardware_store.model.PriceItem"/>
+        <mapping class="com.springapp.hardware_store.model.Product"/>
+        <mapping class="com.springapp.hardware_store.model.ProductCategory"/>
+        <mapping class="com.springapp.hardware_store.model.Rating"/>
+        <mapping class="com.springapp.hardware_store.model.ShoppingCart"/>
+        <mapping class="com.springapp.hardware_store.model.Transaction"/>
+        <mapping class="com.springapp.hardware_store.model.TransactionStatus"/>
+
     </session-factory>
 </hibernate-configuration>

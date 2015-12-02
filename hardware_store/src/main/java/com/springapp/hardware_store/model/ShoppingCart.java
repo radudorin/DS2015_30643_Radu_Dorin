@@ -8,13 +8,14 @@ import javax.persistence.*;
 public class ShoppingCart {
 
     @Id
+    @Column(name = "shopping_cart_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @ManyToOne
-    @JoinColumn(name = "order_status_id", nullable = false)
+    @JoinColumn(name = "order_status_id")
     private OrderStatus orderStatus;
     @OneToOne
-    @JoinColumn(name = "member_id", nullable = false)
+    @JoinColumn(name = "member_id")
     private Member member;
 
     public ShoppingCart() {

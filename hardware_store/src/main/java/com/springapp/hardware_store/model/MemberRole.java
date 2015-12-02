@@ -1,21 +1,25 @@
 package com.springapp.hardware_store.model;
+
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Created by radud on 22/11/2015.
  */
 @Entity
-@Table(name = "member_role")
+@Table(name = "member_role", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "role_name")})
 public class MemberRole {
 
     @Id
+    @Column(name = "member_role")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "role_name")
     private String roleName;
     @OneToMany
-    @JoinColumn(name = "role_id", nullable = false)
+    @JoinColumn(name = "role_id")
     List<Member> members;
 
     public MemberRole() {

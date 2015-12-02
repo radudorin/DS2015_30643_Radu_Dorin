@@ -1,4 +1,9 @@
 package com.springapp.hardware_store.model;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -6,10 +11,14 @@ import java.util.List;
  * Created by radud on 22/11/2015.
  */
 @Entity
-@Table(name = "member")
+@Table(name = "member", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "username"),
+        @UniqueConstraint(columnNames = "email"),
+        @UniqueConstraint(columnNames = "phone") })
 public class Member {
 
     @Id
+    @Column(name = "member_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "username")
@@ -27,16 +36,13 @@ public class Member {
     @Column(name = "birth_date")
     private String birthDate;
     @ManyToOne
-    @JoinColumn(name = "role_id", nullable = false)
+    @JoinColumn(name="role_id")
     private MemberRole role;
     @OneToMany
-    @JoinColumn(name = "member_id", nullable = false)
+    @JoinColumn(name="member_id")
     private List<Rating> ratings;
-    @OneToMany
-    @JoinColumn(name = "member_id", nullable = false)
-    private List<Comment> comments;
     @OneToOne
-    @JoinColumn(name = "member_id", nullable = false)
+    @JoinColumn(name = "member_id")
     private ShoppingCart shoppingCart;
 
     public Member() {
@@ -131,14 +137,6 @@ public class Member {
 
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
     }
 
     public ShoppingCart getShoppingCart() {
