@@ -1,5 +1,6 @@
 package com.springapp.hardware_store.dao;
 
+import com.springapp.hardware_store.model.Product;
 import com.springapp.hardware_store.model.ProductCategory;
 import com.springapp.hardware_store.model.ProductCategory;
 import org.hibernate.Criteria;

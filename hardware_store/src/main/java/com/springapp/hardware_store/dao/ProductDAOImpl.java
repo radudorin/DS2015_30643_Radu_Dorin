@@ -60,4 +60,16 @@ public class ProductDAOImpl implements ProductDAO {
                 uniqueResult();
         return product;
     }
+
+    @Override
+    @Transactional
+    public List<Product> findProductsForCategory(int id) {
+        Session session = sessionFactory.getCurrentSession();
+
+        final Criteria criteria = session.createCriteria(Product.class)
+                .createAlias("category", "c")
+                .add(Restrictions.eq("c.id", id));
+
+        return criteria.list();
+    }
 }

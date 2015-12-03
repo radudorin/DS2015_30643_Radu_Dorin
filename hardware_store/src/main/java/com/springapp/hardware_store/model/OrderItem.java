@@ -16,14 +16,14 @@ public class OrderItem {
     @ManyToOne
     @JoinColumn(name = "order_id")
     private ShoppingCart shoppingCart;
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "product_id")
-    private List<Product> product;
+    private Product product;
 
     public OrderItem() {
     }
 
-    public OrderItem(ShoppingCart shoppingCart, List<Product> product) {
+    public OrderItem(ShoppingCart shoppingCart, Product product) {
         this.shoppingCart = shoppingCart;
         this.product = product;
     }
@@ -44,11 +44,11 @@ public class OrderItem {
         this.shoppingCart = shoppingCart;
     }
 
-    public List<Product> getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(List<Product> product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 }

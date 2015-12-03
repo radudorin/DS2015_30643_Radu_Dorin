@@ -41,28 +41,79 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="categoryDao" class="com.springapp.hardware_store.dao.GenericDAOImpl">
-        <constructor-arg>
-            <value>com.springapp.hardware_store.model.ProductCategory</value>
-        </constructor-arg>
-        <constructor-arg>
-            <ref bean="sessionFactory"/>
-        </constructor-arg>
-    </bean>
-
     <bean id="memberDao" class="com.springapp.hardware_store.dao.MemberDAOImpl">
         <constructor-arg>
             <ref bean="sessionFactory"/>
         </constructor-arg>
     </bean>
 
-    <bean id="memberRoleDao" class="com.springapp.hardware_store.dao.GenericDAOImpl">
-        <constructor-arg>
-            <value>com.springapp.hardware_store.model.MemberRole</value>
-        </constructor-arg>
+    <bean id="memberRoleDao" class="com.springapp.hardware_store.dao.MemberRoleDAOImpl">
         <constructor-arg>
             <ref bean="sessionFactory"/>
         </constructor-arg>
     </bean>
+
+    <bean id="orderItemDao" class="com.springapp.hardware_store.dao.OrderItemDAOImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="orderStatusDao" class="com.springapp.hardware_store.dao.OrderStatusDAOImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="priceItemDao" class="com.springapp.hardware_store.dao.PriceItemDAOImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="productCategoryDao" class="com.springapp.hardware_store.dao.ProductCategoryDAOImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="productDao" class="com.springapp.hardware_store.dao.ProductDAOImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="ratingDao" class="com.springapp.hardware_store.dao.RatingDAOImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="shoppingCartDao" class="com.springapp.hardware_store.dao.ShoppingCartDAOImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="transactionDao" class="com.springapp.hardware_store.dao.TransactionDAOImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="transactionStatusDao" class="com.springapp.hardware_store.dao.TransactionStatusDAOImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory"/>
+        </constructor-arg>
+    </bean>
+
+    <!--<bean id="memberRoleDao" class="com.springapp.hardware_store.dao.GenericDAOImpl">-->
+        <!--<constructor-arg>-->
+            <!--<value>com.springapp.hardware_store.model.MemberRole</value>-->
+        <!--</constructor-arg>-->
+        <!--<constructor-arg>-->
+            <!--<ref bean="sessionFactory"/>-->
+        <!--</constructor-arg>-->
+    <!--</bean>-->
 
 </beans>

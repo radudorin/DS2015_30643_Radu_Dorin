@@ -1,8 +1,6 @@
 package com.springapp.hardware_store.model;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,7 +12,7 @@ import java.util.List;
 @Table(name = "member", uniqueConstraints = {
         @UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "email"),
-        @UniqueConstraint(columnNames = "phone") })
+        @UniqueConstraint(columnNames = "phone")})
 public class Member {
 
     @Id
@@ -35,13 +33,15 @@ public class Member {
     private String phone;
     @Column(name = "birth_date")
     private String birthDate;
-    @ManyToOne
-    @JoinColumn(name="role_id")
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "role_id")
     private MemberRole role;
     @OneToMany
-    @JoinColumn(name="member_id")
+    @JsonIgnore
+    @JoinColumn(name = "member_id")
     private List<Rating> ratings;
     @OneToOne
+    @JsonIgnore
     @JoinColumn(name = "member_id")
     private ShoppingCart shoppingCart;
 
@@ -129,21 +129,5 @@ public class Member {
 
     public void setRole(MemberRole role) {
         this.role = role;
-    }
-
-    public List<Rating> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(List<Rating> ratings) {
-        this.ratings = ratings;
-    }
-
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
-    }
-
-    public void setShoppingCart(ShoppingCart shoppingCart) {
-        this.shoppingCart = shoppingCart;
     }
 }

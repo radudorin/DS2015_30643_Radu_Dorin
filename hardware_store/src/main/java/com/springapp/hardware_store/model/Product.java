@@ -1,4 +1,6 @@
 package com.springapp.hardware_store.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class Product {
     private int id;
     @Column(name = "product_name")
     private String name;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "product_category_id")
     private ProductCategory category;
     @Column(name = "description")
@@ -28,6 +30,7 @@ public class Product {
     @Column(name = "image_source")
     private String imageSource;
     @OneToMany
+    @JsonIgnore
     @JoinColumn(name = "product_id")
     List<PriceItem> priceItems;
 
@@ -41,14 +44,6 @@ public class Product {
         this.stock = stock;
         this.price = price;
         this.imageSource = imageSource;
-    }
-
-    public List<PriceItem> getPriceItems() {
-        return priceItems;
-    }
-
-    public void setPriceItems(List<PriceItem> priceItems) {
-        this.priceItems = priceItems;
     }
 
     public int getId() {

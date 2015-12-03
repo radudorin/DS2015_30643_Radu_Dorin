@@ -1,7 +1,8 @@
 package com.springapp.hardware_store.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ public class MemberRole {
     @Column(name = "role_name")
     private String roleName;
     @OneToMany
+    @JsonIgnore
     @JoinColumn(name = "role_id")
     List<Member> members;
 
@@ -27,14 +29,6 @@ public class MemberRole {
 
     public MemberRole(String roleName) {
         this.roleName = roleName;
-    }
-
-    public List<Member> getMemberList() {
-        return members;
-    }
-
-    public void setMemberList(List<Member> memberList) {
-        this.members = memberList;
     }
 
     public int getId() {

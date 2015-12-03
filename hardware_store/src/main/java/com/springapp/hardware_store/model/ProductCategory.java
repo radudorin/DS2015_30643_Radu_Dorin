@@ -1,4 +1,6 @@
 package com.springapp.hardware_store.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class ProductCategory {
     @Column(name = "category_name")
     private String name;
     @OneToMany
+    @JsonIgnore
     @JoinColumn(name="product_category_id")
     List<Product> products;
 
@@ -25,14 +28,6 @@ public class ProductCategory {
 
     public ProductCategory(String name) {
         this.name = name;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 
     public int getId() {

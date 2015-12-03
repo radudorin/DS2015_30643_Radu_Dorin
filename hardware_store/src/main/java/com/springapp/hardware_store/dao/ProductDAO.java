@@ -18,6 +18,8 @@ public interface ProductDAO {
 
     public List<Product> findAll();
 
+    public List<Product> findProductsForCategory(int id);
+
     public Product getByField(String fieldName, String fieldValue);
 
 }
