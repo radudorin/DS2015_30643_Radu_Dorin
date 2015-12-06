@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface OrderItemDAO {
 
-    public void saveOrUpdate(OrderItem entity);
+    public int save(OrderItem entity);
 
     public OrderItem delete(int id);
 

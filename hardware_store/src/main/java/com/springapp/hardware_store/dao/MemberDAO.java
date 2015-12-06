@@ -1,6 +1,7 @@
 package com.springapp.hardware_store.dao;
 
 import com.springapp.hardware_store.model.Member;
+import com.springapp.hardware_store.model.ShoppingCart;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 public interface MemberDAO {
 
-    public void saveOrUpdate(Member entity);
+    public int save(Member entity);
 
     public Member delete(int id);
 

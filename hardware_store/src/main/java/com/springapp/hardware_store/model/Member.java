@@ -33,7 +33,7 @@ public class Member {
     private String phone;
     @Column(name = "birth_date")
     private String birthDate;
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id")
     private MemberRole role;
     @OneToMany
@@ -41,14 +41,13 @@ public class Member {
     @JoinColumn(name = "member_id")
     private List<Rating> ratings;
     @OneToOne
-    @JsonIgnore
     @JoinColumn(name = "member_id")
     private ShoppingCart shoppingCart;
 
     public Member() {
     }
 
-    public Member(String username, String password, String email, String fullName, String address, String phone, String birthDate, MemberRole role) {
+    public Member(String username, String password, String email, String fullName, String address, String phone, String birthDate, ShoppingCart shoppingCart) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -56,7 +55,7 @@ public class Member {
         this.address = address;
         this.phone = phone;
         this.birthDate = birthDate;
-        this.role = role;
+        this.shoppingCart = shoppingCart;
     }
 
     public int getId() {
@@ -91,11 +90,11 @@ public class Member {
         this.email = email;
     }
 
-    public String getFull_name() {
+    public String getFullName() {
         return fullName;
     }
 
-    public void setFull_name(String fullName) {
+    public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
@@ -129,5 +128,21 @@ public class Member {
 
     public void setRole(MemberRole role) {
         this.role = role;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 }

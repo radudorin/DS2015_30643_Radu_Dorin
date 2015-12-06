@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface GenericDAO<T> {
 
-    public void saveOrUpdate(T entity);
+    public int save(T entity);
 
     public T delete(int id);
 

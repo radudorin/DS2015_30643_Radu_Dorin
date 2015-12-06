@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface MemberRoleDAO {
 
-    public void saveOrUpdate(MemberRole entity);
+    public int save(MemberRole entity);
 
     public MemberRole delete(int id);
 

@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface ProductDAO {
 
-    public void saveOrUpdate(Product entity);
+    public int save(Product entity);
 
     public Product delete(int id);
 

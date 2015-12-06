@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface RatingDAO {
 
-    public void saveOrUpdate(Rating entity);
+    public int save(Rating entity);
 
     public Rating delete(int id);
 
@@ -19,5 +19,9 @@ public interface RatingDAO {
     public List<Rating> findAll();
 
     public Rating getByField(String fieldName, String fieldValue);
+
+    public List<Rating> findRatingsForProduct(int id);
+
+    public List<Rating> findRatingsForMember(int id);
 
 }

@@ -22,9 +22,9 @@ public class MemberRoleDAOImpl implements MemberRoleDAO {
 
     @Override
     @Transactional
-    public void saveOrUpdate(MemberRole memberRole) {
+    public int save(MemberRole memberRole) {
         Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(memberRole);
+        return (Integer) session.save(memberRole);
     }
 
     @Override

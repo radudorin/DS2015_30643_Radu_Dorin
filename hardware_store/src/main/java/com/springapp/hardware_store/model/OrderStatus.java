@@ -1,4 +1,6 @@
 package com.springapp.hardware_store.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,10 +19,16 @@ public class OrderStatus {
     @Column(name = "status_name")
     private String statusName;
     @OneToMany
+    @JsonIgnore
     @JoinColumn(name="order_status_id")
-    List<ShoppingCart> shoppingCarts;
+    private List<Order> orders;
 
     public OrderStatus() {
+    }
+
+    public OrderStatus(String statusName, List<Order> orders) {
+        this.statusName = statusName;
+        this.orders = orders;
     }
 
     public OrderStatus(String statusName) {
@@ -41,13 +49,5 @@ public class OrderStatus {
 
     public void setStatusName(String statusName) {
         this.statusName = statusName;
-    }
-
-    public List<ShoppingCart> getShoppingCarts() {
-        return shoppingCarts;
-    }
-
-    public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
-        this.shoppingCarts = shoppingCarts;
     }
 }

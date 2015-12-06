@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface PriceItemDAO {
 
-    public void saveOrUpdate(PriceItem entity);
+    public int save(PriceItem entity);
 
     public PriceItem delete(int id);
 

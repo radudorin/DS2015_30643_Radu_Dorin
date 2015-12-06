@@ -23,9 +23,9 @@ public class ProductCategoryDAOImpl implements ProductCategoryDAO {
 
     @Override
     @Transactional
-    public void saveOrUpdate(ProductCategory productCategory) {
+    public int save(ProductCategory productCategory) {
         Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(productCategory);
+        return (Integer) session.save(productCategory);
     }
 
     @Override

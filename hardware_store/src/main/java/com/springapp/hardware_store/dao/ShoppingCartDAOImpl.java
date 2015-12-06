@@ -22,9 +22,9 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
 
     @Override
     @Transactional
-    public void saveOrUpdate(ShoppingCart shoppingCart) {
+    public int save(ShoppingCart shoppingCart) {
         Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(shoppingCart);
+        return (Integer) session.save(shoppingCart);
     }
 
     @Override
@@ -59,5 +59,22 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
                 add(Restrictions.eq(fieldName, fieldValue)).
                 uniqueResult();
         return shoppingCart;
+    }
+
+    @Override
+    @Transactional
+    public ShoppingCart getShoppingCartForMember(int id) {
+        Session session = sessionFactory.getCurrentSession();
+
+        final Criteria criteria = session.createCriteria(ShoppingCart.class)
+                .createAlias("member", "m")
+                .add(Restrictions.eq("m.id", id));
+
+        List<ShoppingCart> shoppingCarts = criteria.list();
+        if (shoppingCarts.isEmpty()) {
+            return null;
+        }
+
+        return shoppingCarts.get(0);
     }
 }

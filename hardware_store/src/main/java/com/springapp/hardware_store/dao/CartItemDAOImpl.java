@@ -1,7 +1,7 @@
 package com.springapp.hardware_store.dao;
 
-import com.springapp.hardware_store.model.Transaction;
-import com.springapp.hardware_store.model.Transaction;
+import com.springapp.hardware_store.model.CartItem;
+import com.springapp.hardware_store.model.OrderItem;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,51 +13,51 @@ import java.util.List;
 /**
  * Created by radud on 02/12/2015.
  */
-public class TransactionDAOImpl implements TransactionDAO {
+public class CartItemDAOImpl implements CartItemDAO {
     SessionFactory sessionFactory;
 
-    public TransactionDAOImpl(SessionFactory sessionFactory) {
+    public CartItemDAOImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override
     @Transactional
-    public void saveOrUpdate(Transaction transaction) {
+    public int save(CartItem orderItem) {
         Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(transaction);
+        return (Integer) session.save(orderItem);
     }
 
     @Override
     @Transactional
-    public Transaction delete(int id) {
+    public CartItem delete(int id) {
         Session session = sessionFactory.getCurrentSession();
-        Transaction transaction = findById(id);
-        session.delete(transaction);
-        return transaction;
+        CartItem cartItem = findById(id);
+        session.delete(cartItem);
+        return cartItem;
     }
 
     @Override
     @Transactional
-    public Transaction findById(int id) {
+    public CartItem findById(int id) {
         Session session = sessionFactory.getCurrentSession();
-        return (Transaction) session.get(Transaction.class, id);
+        return (CartItem) session.get(OrderItem.class, id);
     }
 
     @Override
     @Transactional
-    public List<Transaction> findAll() {
+    public List<CartItem> findAll() {
         Session session = sessionFactory.getCurrentSession();
-        final Criteria crit = session.createCriteria(Transaction.class);
+        final Criteria crit = session.createCriteria(OrderItem.class);
         return crit.list();
     }
 
     @Override
     @Transactional
-    public Transaction getByField(String fieldName, String fieldValue) {
+    public CartItem getByField(String fieldName, String fieldValue) {
         Session session = sessionFactory.getCurrentSession();
-        Transaction transaction = (Transaction) session.createCriteria(Transaction.class).
+        CartItem cartItem = (CartItem) session.createCriteria(OrderItem.class).
                 add(Restrictions.eq(fieldName, fieldValue)).
                 uniqueResult();
-        return transaction;
+        return cartItem;
     }
 }

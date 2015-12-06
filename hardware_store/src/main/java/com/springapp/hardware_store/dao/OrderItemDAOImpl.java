@@ -22,9 +22,9 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 
     @Override
     @Transactional
-    public void saveOrUpdate(OrderItem orderItem) {
+    public int save(OrderItem orderItem) {
         Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(orderItem);
+        return (Integer) session.save(orderItem);
     }
 
     @Override

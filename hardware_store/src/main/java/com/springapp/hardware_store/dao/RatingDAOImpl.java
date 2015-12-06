@@ -1,5 +1,6 @@
 package com.springapp.hardware_store.dao;
 
+import com.springapp.hardware_store.model.Product;
 import com.springapp.hardware_store.model.Rating;
 import com.springapp.hardware_store.model.Rating;
 import org.hibernate.Criteria;
@@ -22,9 +23,9 @@ public class RatingDAOImpl implements RatingDAO {
 
     @Override
     @Transactional
-    public void saveOrUpdate(Rating rating) {
+    public int save(Rating rating) {
         Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(rating);
+        return (Integer) session.save(rating);
     }
 
     @Override
@@ -60,4 +61,28 @@ public class RatingDAOImpl implements RatingDAO {
                 uniqueResult();
         return rating;
     }
+
+    @Override
+    @Transactional
+    public List<Rating> findRatingsForProduct(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        final Criteria criteria = session.createCriteria(Rating.class)
+                .createAlias("product", "p")
+                .add(Restrictions.eq("p.id", id));
+
+        return criteria.list();
+    }
+
+    @Override
+    @Transactional
+    public List<Rating> findRatingsForMember(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        final Criteria criteria = session.createCriteria(Rating.class)
+                .createAlias("member", "m")
+                .add(Restrictions.eq("m.id", id));
+
+        return criteria.list();
+    }
+
+
 }

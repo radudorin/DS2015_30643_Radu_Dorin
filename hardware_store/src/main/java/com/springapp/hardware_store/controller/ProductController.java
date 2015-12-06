@@ -1,10 +1,10 @@
 package com.springapp.hardware_store.controller;
 
+import com.springapp.hardware_store.dao.MemberDAO;
 import com.springapp.hardware_store.dao.ProductCategoryDAO;
 import com.springapp.hardware_store.dao.ProductDAO;
-import com.springapp.hardware_store.model.Product;
-import com.springapp.hardware_store.model.ProductCategory;
-import com.springapp.hardware_store.model.Result;
+import com.springapp.hardware_store.dao.RatingDAO;
+import com.springapp.hardware_store.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -42,7 +42,7 @@ public class ProductController {
         return product;
     }
 
-    @RequestMapping(value = "/category/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/category/get/{id}", method = RequestMethod.GET)
     public
     @ResponseBody
     List<Product> getProductsByCategory(@PathVariable("id") int id) {
@@ -60,6 +60,35 @@ public class ProductController {
         List<ProductCategory> productCategories = productCategoryDAO.findAll();
 
         return productCategories;
+    }
+
+    @RequestMapping(value = "/rating/get/{id}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Rating> getRatingsForProduct(@PathVariable("id") int id) {
+        RatingDAO ratingDAO = (RatingDAO) appContext.getBean("ratingDao");
+        List<Rating> ratings = ratingDAO.findRatingsForProduct(id);
+
+        return ratings;
+    }
+
+    @RequestMapping(value = "/rating/add/{id}", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    Result getRatingsForProduct(@RequestParam(value = "memberId") int memberId, @RequestBody Rating rating, @PathVariable("id") int id) {
+        RatingDAO ratingDAO = (RatingDAO) appContext.getBean("ratingDao");
+        MemberDAO memberDAO = (MemberDAO) appContext.getBean("memberDao");
+        ProductDAO productDAO = (ProductDAO) appContext.getBean("productDao");
+
+        rating.setMember(memberDAO.findById(memberId));
+        rating.setProduct(productDAO.findById(id));
+        ratingDAO.save(rating);
+
+        Result result = new Result();
+        result.setHasErrors(false);
+        result.setMessage("Success");
+
+        return result;
     }
 
     @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
@@ -90,7 +119,7 @@ public class ProductController {
         ProductCategory productCategory = productCategoryDAO.getByField("name", product.getCategory().getName());
         product.setCategory(productCategory);
 
-        productDAO.saveOrUpdate(product);
+        productDAO.save(product);
 
         result.setHasErrors(false);
         return result;

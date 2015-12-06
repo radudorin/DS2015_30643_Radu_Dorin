@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface ProductCategoryDAO {
 
-    public void saveOrUpdate(ProductCategory entity);
+    public int save(ProductCategory entity);
 
     public ProductCategory delete(int id);
 

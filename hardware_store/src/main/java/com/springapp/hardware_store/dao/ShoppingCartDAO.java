@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface ShoppingCartDAO {
 
-    public void saveOrUpdate(ShoppingCart entity);
+    public int save(ShoppingCart entity);
 
     public ShoppingCart delete(int id);
 
@@ -19,5 +19,8 @@ public interface ShoppingCartDAO {
     public List<ShoppingCart> findAll();
 
     public ShoppingCart getByField(String fieldName, String fieldValue);
+
+    public ShoppingCart getShoppingCartForMember(int id);
+
 
 }

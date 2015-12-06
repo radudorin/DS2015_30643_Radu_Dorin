@@ -1,6 +1,7 @@
 package com.springapp.hardware_store.dao;
 
 import com.springapp.hardware_store.model.Member;
+import com.springapp.hardware_store.model.ShoppingCart;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,9 +24,9 @@ public class MemberDAOImpl implements MemberDAO {
 
     @Override
     @Transactional
-    public void saveOrUpdate(Member member) {
+    public int save(Member member) {
         Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(member);
+        return (Integer) session.save(member);
     }
 
     @Override

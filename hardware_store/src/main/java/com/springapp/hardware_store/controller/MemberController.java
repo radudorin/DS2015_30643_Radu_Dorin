@@ -1,16 +1,13 @@
 package com.springapp.hardware_store.controller;
 
-import com.springapp.hardware_store.dao.MemberDAO;
-import com.springapp.hardware_store.dao.MemberRoleDAO;
-import com.springapp.hardware_store.model.Member;
-import com.springapp.hardware_store.model.MemberRole;
-import com.springapp.hardware_store.model.Result;
+import com.springapp.hardware_store.dao.*;
+import com.springapp.hardware_store.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -39,6 +36,7 @@ public class MemberController {
     Result register(@RequestBody Member member) {
         MemberDAO memberDAO = (MemberDAO) appContext.getBean("memberDao");
         MemberRoleDAO memberRoleDAO = (MemberRoleDAO) appContext.getBean("memberRoleDao");
+        ShoppingCartDAO shoppingCartDAO = (ShoppingCartDAO) appContext.getBean("shoppingCartDao");
         Result result = new Result();
 
         if (member == null) {
@@ -47,11 +45,14 @@ public class MemberController {
             return result;
         }
 
-        MemberRole memberRole = memberRoleDAO.getByField("roleName", member.getRole().getRoleName());
+        MemberRole memberRole = memberRoleDAO.getByField("roleName", "user");
 
         member.setRole(memberRole);
 
-        memberDAO.saveOrUpdate(member);
+        int id = memberDAO.save(member);
+
+        shoppingCartDAO.save(new ShoppingCart(memberDAO.findById(id)));
+
         result.setHasErrors(false);
         return result;
     }
@@ -77,5 +78,53 @@ public class MemberController {
         Member member = memberDAO.findById(id);
 
         return member;
+    }
+
+    @RequestMapping(value = "/rating/get/{id}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Rating> getRatingsForMember(@PathVariable("id") int id) {
+        RatingDAO ratingDAO = (RatingDAO) appContext.getBean("ratingDao");
+        List<Rating> ratings = ratingDAO.findRatingsForMember(id);
+
+        return ratings;
+    }
+
+    @RequestMapping(value = "/shoppingCart/get/{id}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    ShoppingCart getShopingCart(@PathVariable("id") int id) {
+        ShoppingCartDAO shoppingCartDAO = (ShoppingCartDAO) appContext.getBean("shoppingCartDao");
+        ShoppingCart shoppingCart = shoppingCartDAO.getShoppingCartForMember(id);
+
+        return shoppingCart;
+    }
+
+    @RequestMapping(value = "/orders/get/{id}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Order> getOrders(@PathVariable("id") int id) {
+        OrderDAO orderDao = (OrderDAO) appContext.getBean("orderDao");
+        List<Order> orders = orderDao.getOrdersForMember(id);
+
+        return orders;
+    }
+
+    @RequestMapping(value = "/orders/get/{id}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Result placeOrder(@PathVariable("id") int id, @RequestBody Date deliveryDate) {
+        ShoppingCartDAO shoppingCartDAO = (ShoppingCartDAO) appContext.getBean("shoppingCartDao");
+        ShoppingCart shoppingCart = shoppingCartDAO.getShoppingCartForMember(id);
+
+        shoppingCart.getCartItems();
+
+
+
+        Result result = new Result();
+        result.setHasErrors(false);
+        result.setMessage("Succes");
+
+        return result;
     }
 }

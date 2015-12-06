@@ -95,13 +95,13 @@
         </constructor-arg>
     </bean>
 
-    <bean id="transactionDao" class="com.springapp.hardware_store.dao.TransactionDAOImpl">
+    <bean id="orderDao" class="com.springapp.hardware_store.dao.OrderDAOImpl">
         <constructor-arg>
             <ref bean="sessionFactory"/>
         </constructor-arg>
     </bean>
 
-    <bean id="transactionStatusDao" class="com.springapp.hardware_store.dao.TransactionStatusDAOImpl">
+    <bean id="cartItemDao" class="com.springapp.hardware_store.dao.CartItemDAOImpl">
         <constructor-arg>
             <ref bean="sessionFactory"/>
         </constructor-arg>

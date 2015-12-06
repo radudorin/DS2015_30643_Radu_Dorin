@@ -24,9 +24,9 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 
     @Override
     @Transactional
-    public void saveOrUpdate(T entity) {
+    public int save(T entity) {
         Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(entity);
+        return (Integer) session.save(entity);
     }
 
     @Override

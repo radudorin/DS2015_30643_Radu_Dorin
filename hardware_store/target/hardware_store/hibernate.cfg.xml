@@ -16,12 +16,12 @@
         <mapping class="com.springapp.hardware_store.model.OrderItem"/>
         <mapping class="com.springapp.hardware_store.model.OrderStatus"/>
         <mapping class="com.springapp.hardware_store.model.PriceItem"/>
+        <mapping class="com.springapp.hardware_store.model.CartItem"/>
         <mapping class="com.springapp.hardware_store.model.Product"/>
         <mapping class="com.springapp.hardware_store.model.ProductCategory"/>
         <mapping class="com.springapp.hardware_store.model.Rating"/>
         <mapping class="com.springapp.hardware_store.model.ShoppingCart"/>
-        <mapping class="com.springapp.hardware_store.model.Transaction"/>
-        <mapping class="com.springapp.hardware_store.model.TransactionStatus"/>
+        <mapping class="com.springapp.hardware_store.model.Order"/>
 
     </session-factory>
 </hibernate-configuration>

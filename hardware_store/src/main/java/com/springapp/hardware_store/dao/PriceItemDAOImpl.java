@@ -22,9 +22,9 @@ public class PriceItemDAOImpl implements PriceItemDAO {
 
     @Override
     @Transactional
-    public void saveOrUpdate(PriceItem priceItem) {
+    public int save(PriceItem priceItem) {
         Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(priceItem);
+        return (Integer) session.save(priceItem);
     }
 
     @Override
