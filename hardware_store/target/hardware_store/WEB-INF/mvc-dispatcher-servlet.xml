@@ -107,13 +107,4 @@
         </constructor-arg>
     </bean>
 
-    <!--<bean id="memberRoleDao" class="com.springapp.hardware_store.dao.GenericDAOImpl">-->
-        <!--<constructor-arg>-->
-            <!--<value>com.springapp.hardware_store.model.MemberRole</value>-->
-        <!--</constructor-arg>-->
-        <!--<constructor-arg>-->
-            <!--<ref bean="sessionFactory"/>-->
-        <!--</constructor-arg>-->
-    <!--</bean>-->
-
 </beans>

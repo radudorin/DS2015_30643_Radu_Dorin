@@ -2,6 +2,7 @@ package com.springapp.hardware_store.controller;
 
 import com.springapp.hardware_store.dao.*;
 import com.springapp.hardware_store.model.*;
+import com.springapp.hardware_store.utils.MailUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -54,6 +55,9 @@ public class MemberController {
         shoppingCartDAO.save(new ShoppingCart(memberDAO.findById(id)));
 
         result.setHasErrors(false);
+
+        MailUtils.send(member.getEmail(), member);
+
         return result;
     }
 
@@ -110,21 +114,19 @@ public class MemberController {
         return orders;
     }
 
-    @RequestMapping(value = "/orders/get/{id}", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    Result placeOrder(@PathVariable("id") int id, @RequestBody Date deliveryDate) {
-        ShoppingCartDAO shoppingCartDAO = (ShoppingCartDAO) appContext.getBean("shoppingCartDao");
-        ShoppingCart shoppingCart = shoppingCartDAO.getShoppingCartForMember(id);
-
-        shoppingCart.getCartItems();
-
-
-
-        Result result = new Result();
-        result.setHasErrors(false);
-        result.setMessage("Succes");
-
-        return result;
-    }
+//    @RequestMapping(value = "/orders/get/{id}", method = RequestMethod.GET)
+//    public
+//    @ResponseBody
+//    Result placeOrder(@PathVariable("id") int id, @RequestBody Date deliveryDate) {
+//        ShoppingCartDAO shoppingCartDAO = (ShoppingCartDAO) appContext.getBean("shoppingCartDao");
+//        ShoppingCart shoppingCart = shoppingCartDAO.getShoppingCartForMember(id);
+//
+//        shoppingCart.getCartItems();
+//
+//        Result result = new Result();
+//        result.setHasErrors(false);
+//        result.setMessage("Succes");
+//
+//        return result;
+//    }
 }
