@@ -1,2 +1,0 @@
-DVD [title=DVD5, price=123.0, year=333]
-DVD [title=DVD6, price=123.0, year=333]

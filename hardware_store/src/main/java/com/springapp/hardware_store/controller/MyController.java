@@ -44,10 +44,6 @@ public class MyController {
 //
 //
 //
-        Result result = new Result();
-        result.setHasErrors(false);
-        result.setMessage("Success");
-
         return result;
     }
 

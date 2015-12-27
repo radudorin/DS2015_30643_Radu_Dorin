@@ -9,7 +9,20 @@ public class Result {
 
     private String message;
 
-    public Result() {
+    private BaseResponse response;
+
+    public Result(boolean hasErrors, String message, BaseResponse response) {
+        this.hasErrors = hasErrors;
+        this.message = message;
+        this.response = response;
+    }
+
+    public BaseResponse getResponse() {
+        return response;
+    }
+
+    public void setResponse(BaseResponse response) {
+        this.response = response;
     }
 
     public boolean hasErrors() {

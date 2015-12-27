@@ -13,7 +13,7 @@ import java.util.List;
         @UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "email"),
         @UniqueConstraint(columnNames = "phone")})
-public class Member {
+public class Member extends BaseResponse {
 
     @Id
     @Column(name = "member_id")

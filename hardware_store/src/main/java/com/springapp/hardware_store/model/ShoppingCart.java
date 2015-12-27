@@ -9,7 +9,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "shopping_cart")
-public class ShoppingCart {
+public class ShoppingCart extends BaseResponse {
 
     @Id
     @Column(name = "shopping_cart_id")

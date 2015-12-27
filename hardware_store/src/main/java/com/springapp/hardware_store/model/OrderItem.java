@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "order_item")
-public class OrderItem {
+public class OrderItem extends BaseResponse {
 
     @Id
     @Column(name = "order_item_id")
