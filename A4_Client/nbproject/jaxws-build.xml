@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+        *** GENERATED FROM jax-ws.xml - DO NOT EDIT !                             ***
+        *** TO MODIFY wsimport options USE Web Service node -> Edit WS Attributes ***
+        *** TO CHANGE TARGETS GENERATED TO jaxws-build.xml COPY THOSE             ***
+        *** TARGETS TO ../build.xml AND MODIFY THAT FILE INSTEAD                  ***
+
+        --><project xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3" xmlns:xalan="http://xml.apache.org/xslt" xmlns:jaxws="http://www.netbeans.org/ns/jax-ws/1">
+    <!--
+                ===================
+                JAX-WS WSIMPORT SECTION
+                ===================
+            -->
+    <target name="wsimport-init" depends="init">
+        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
+        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+            <classpath path="${libs.jaxws21.classpath}"/>
+        </taskdef>
+    </target>
+    <target name="wsimport-client-admin" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/admin"/>
+        <property name="wsdl-admin" location="xml-resources/web-service-references/admin/wsdl/localhost_8080/A4/admin.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/admin" destdir="${build.generated.dir}/jax-wsCache/admin" wsdl="${wsdl-admin}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/A4/admin?WSDL" xnocompile="true" xendorsed="true" package="com.a4.javawebservice.admin">
+            <depends file="${wsdl-admin}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/admin"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/admin">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-admin" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/admin"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/com/a4/javawebservice/admin"/>
+    </target>
+    <target name="wsimport-client-client" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/client"/>
+        <property name="wsdl-client" location="xml-resources/web-service-references/client/wsdl/localhost_8080/A4/client.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/client" destdir="${build.generated.dir}/jax-wsCache/client" wsdl="${wsdl-client}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/A4/client?WSDL" xnocompile="true" xendorsed="true" package="com.a4.javawebservice.client">
+            <depends file="${wsdl-client}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/client"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/client">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-client" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/client"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/com/a4/javawebservice/client"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-admin, wsimport-client-client"/>
+</project>

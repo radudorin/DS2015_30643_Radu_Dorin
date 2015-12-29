@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/A4/admin?WSDL" uri="wsdl/localhost_8080/A4/admin.wsdl"/>
+    <system systemId="http://localhost:8080/A4/admin?xsd=1" uri="wsdl/localhost_8080/A4/admin.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/A4/client?WSDL" uri="wsdl/localhost_8080/A4/client.wsdl"/>
+    <system systemId="http://localhost:8080/A4/client?xsd=1" uri="wsdl/localhost_8080/A4/client.xsd_1.xsd"/>
+</catalog>
