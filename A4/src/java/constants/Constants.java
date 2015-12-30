@@ -18,4 +18,11 @@ public class Constants {
 
     public static final int PORT = 4444;
     public static final String HOST = "localhost";
+
+    public static final String STATUS_IN_PROGRESS = "In Progress";
+    public static final String STATUS_RECEIVED = "Received";
+
+    public static final String[] CITIES = {"Chicago", "Brasil", "Cluj", "Berlin", "Ungheni", "New York", "Balti", "Amsterdam",
+        "Rio", "Dej", "Brasov", "Alba-Iulia", "Washington", "Madrid", "Toledo", "Toronto", "Moscow", "Sankt Petersburg", "Odessa"};
+
 }

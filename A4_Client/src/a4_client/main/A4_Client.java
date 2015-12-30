@@ -21,7 +21,7 @@ public class A4_Client {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       new LoginForm();
+       new LoginForm().setVisible(true);
     }
 
 //    public static String getResult(int num1, int num2) {

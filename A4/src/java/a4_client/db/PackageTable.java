@@ -118,8 +118,43 @@ public class PackageTable {
         return packages;
     }
 
+    public ArrayList<Package> getPackageList(int userId) {
+        String select = "select * from package where receiver_id = ?";
+        ArrayList<Package> packages = new ArrayList<>();
+        PreparedStatement preparedStatement = null;
+        try {
+
+            preparedStatement = myConnection.prepareStatement(select);
+
+            preparedStatement.setInt(1, userId);
+
+            myConnection.setAutoCommit(false);
+            ResultSet myRs = preparedStatement.executeQuery();
+
+            while (myRs.next()) {
+                int id = myRs.getInt("id");
+                int senderId = myRs.getInt("sender_id");
+                int receiverId = myRs.getInt("receiver_id");
+                String name = myRs.getString("name");
+                String description = myRs.getString("description");
+                String senderCity = myRs.getString("sender_city");
+                String destinationCity = myRs.getString("destination_city");
+                boolean tracking = myRs.getBoolean("tracking");
+
+                packages.add(new Package(id, receiverId, senderId, description, name, destinationCity, senderCity, tracking));
+            }
+
+            myConnection.commit();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PackageTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return packages;
+    }
+
     public void updatePackage(Package p) {
-        String update = "update package set sender_id = ?, receiver_id = ?, name = ?, description = ?, sender_city = ?, destination_city = ?, tracking = ?";
+        String update = "update package set sender_id = ?, receiver_id = ?, name = ?, description = ?, sender_city = ?, destination_city = ?, tracking = ? where id = ?";
 
         try {
             PreparedStatement preparedStatement = myConnection.prepareStatement(update);
@@ -131,6 +166,7 @@ public class PackageTable {
             preparedStatement.setString(5, p.getSenderCity());
             preparedStatement.setString(6, p.getDestinationCity());
             preparedStatement.setBoolean(7, p.isTracking());
+            preparedStatement.setInt(8, p.getId());
 
             preparedStatement.executeUpdate();
 
@@ -152,5 +188,15 @@ public class PackageTable {
         } catch (SQLException ex) {
             Logger.getLogger(PackageTable.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public Package beginTracking(int id) {
+        Package p = getPackage(id);
+        if (p.isTracking()) {
+            return null;
+        }
+        p.setTracking(true);
+        updatePackage(p);
+        return p;
     }
 }

@@ -10,6 +10,42 @@
 <message name="registerResponse">
 <part name="parameters" element="tns:registerResponse"/>
 </message>
+<message name="getPackage">
+<part name="parameters" element="tns:getPackage"/>
+</message>
+<message name="getPackageResponse">
+<part name="parameters" element="tns:getPackageResponse"/>
+</message>
+<message name="getPackages">
+<part name="parameters" element="tns:getPackages"/>
+</message>
+<message name="getPackagesResponse">
+<part name="parameters" element="tns:getPackagesResponse"/>
+</message>
+<message name="beginTracking">
+<part name="parameters" element="tns:beginTracking"/>
+</message>
+<message name="beginTrackingResponse">
+<part name="parameters" element="tns:beginTrackingResponse"/>
+</message>
+<message name="getUsers">
+<part name="parameters" element="tns:getUsers"/>
+</message>
+<message name="getUsersResponse">
+<part name="parameters" element="tns:getUsersResponse"/>
+</message>
+<message name="getRoutes">
+<part name="parameters" element="tns:getRoutes"/>
+</message>
+<message name="getRoutesResponse">
+<part name="parameters" element="tns:getRoutesResponse"/>
+</message>
+<message name="getRoute">
+<part name="parameters" element="tns:getRoute"/>
+</message>
+<message name="getRouteResponse">
+<part name="parameters" element="tns:getRouteResponse"/>
+</message>
 <message name="login">
 <part name="parameters" element="tns:login"/>
 </message>
@@ -21,6 +57,30 @@
 <input wsam:Action="http://web_services.javawebservice.a4.com/ClientOperationsWebService/registerRequest" message="tns:register"/>
 <output wsam:Action="http://web_services.javawebservice.a4.com/ClientOperationsWebService/registerResponse" message="tns:registerResponse"/>
 </operation>
+<operation name="getPackage">
+<input wsam:Action="http://web_services.javawebservice.a4.com/ClientOperationsWebService/getPackageRequest" message="tns:getPackage"/>
+<output wsam:Action="http://web_services.javawebservice.a4.com/ClientOperationsWebService/getPackageResponse" message="tns:getPackageResponse"/>
+</operation>
+<operation name="getPackages">
+<input wsam:Action="http://web_services.javawebservice.a4.com/ClientOperationsWebService/getPackagesRequest" message="tns:getPackages"/>
+<output wsam:Action="http://web_services.javawebservice.a4.com/ClientOperationsWebService/getPackagesResponse" message="tns:getPackagesResponse"/>
+</operation>
+<operation name="beginTracking">
+<input wsam:Action="http://web_services.javawebservice.a4.com/ClientOperationsWebService/beginTrackingRequest" message="tns:beginTracking"/>
+<output wsam:Action="http://web_services.javawebservice.a4.com/ClientOperationsWebService/beginTrackingResponse" message="tns:beginTrackingResponse"/>
+</operation>
+<operation name="getUsers">
+<input wsam:Action="http://web_services.javawebservice.a4.com/ClientOperationsWebService/getUsersRequest" message="tns:getUsers"/>
+<output wsam:Action="http://web_services.javawebservice.a4.com/ClientOperationsWebService/getUsersResponse" message="tns:getUsersResponse"/>
+</operation>
+<operation name="getRoutes">
+<input wsam:Action="http://web_services.javawebservice.a4.com/ClientOperationsWebService/getRoutesRequest" message="tns:getRoutes"/>
+<output wsam:Action="http://web_services.javawebservice.a4.com/ClientOperationsWebService/getRoutesResponse" message="tns:getRoutesResponse"/>
+</operation>
+<operation name="getRoute">
+<input wsam:Action="http://web_services.javawebservice.a4.com/ClientOperationsWebService/getRouteRequest" message="tns:getRoute"/>
+<output wsam:Action="http://web_services.javawebservice.a4.com/ClientOperationsWebService/getRouteResponse" message="tns:getRouteResponse"/>
+</operation>
 <operation name="login">
 <input wsam:Action="http://web_services.javawebservice.a4.com/ClientOperationsWebService/loginRequest" message="tns:login"/>
 <output wsam:Action="http://web_services.javawebservice.a4.com/ClientOperationsWebService/loginResponse" message="tns:loginResponse"/>
@@ -29,6 +89,60 @@
 <binding name="ClientOperationsWebServicePortBinding" type="tns:ClientOperationsWebService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
 <operation name="register">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getPackage">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getPackages">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="beginTracking">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getUsers">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getRoutes">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getRoute">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

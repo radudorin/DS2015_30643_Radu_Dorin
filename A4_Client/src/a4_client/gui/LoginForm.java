@@ -20,6 +20,7 @@ public class LoginForm extends javax.swing.JFrame {
      * Creates new form LoginForm
      */
     public LoginForm() {
+        initTheme();
         initComponents();
         myInit();
     }
@@ -32,28 +33,23 @@ public class LoginForm extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
 
     private void myInit() {
-        initTheme();
         clientProxy = (new Client()).getClientOperationsWebServicePort();
 
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        registerForm.setLocationRelativeTo(this);
+        registerForm.setResizable(false);
         registerForm.setVisible(false);
         registerForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         errorText.setVisible(false);
-        registerErrorLabel.setVisible(false);
-        this.setVisible(true);
-        this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private void showRegisterForm() {
@@ -149,6 +145,7 @@ public class LoginForm extends javax.swing.JFrame {
         registerPassword2Label = new javax.swing.JLabel();
         registerFullNameLabel = new javax.swing.JLabel();
         registerErrorLabel = new javax.swing.JLabel();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         loginButton = new javax.swing.JButton();
         errorText = new javax.swing.JLabel();
@@ -158,7 +155,9 @@ public class LoginForm extends javax.swing.JFrame {
         passwordField = new javax.swing.JPasswordField();
         registerButton = new javax.swing.JButton();
 
-        registerForm.setMinimumSize(new java.awt.Dimension(450, 300));
+        registerForm.setMaximumSize(new java.awt.Dimension(450, 340));
+        registerForm.setMinimumSize(new java.awt.Dimension(450, 340));
+        registerForm.setPreferredSize(new java.awt.Dimension(450, 340));
         registerForm.setResizable(false);
 
         registerDoneButton.setText("Done");
@@ -219,7 +218,7 @@ public class LoginForm extends javax.swing.JFrame {
                                 .addComponent(registerPasswordField1)
                                 .addComponent(registerPasswordField2)
                                 .addComponent(registerFullNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jDesktopPane2Layout.setVerticalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,9 +254,20 @@ public class LoginForm extends javax.swing.JFrame {
         );
         registerFormLayout.setVerticalGroup(
             registerFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(registerFormLayout.createSequentialGroup()
-                .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+            .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jInternalFrame1.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -431,6 +441,7 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JLabel errorText;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JButton loginButton;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
