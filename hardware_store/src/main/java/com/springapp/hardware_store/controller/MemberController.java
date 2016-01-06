@@ -31,6 +31,32 @@ public class MemberController {
         return members;
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    Result register(@RequestParam(value = "password") String password, @RequestParam(value = "username") String username) {
+        MemberDAO memberDAO = (MemberDAO) appContext.getBean("memberDao");
+        Member member = memberDAO.getByField("username", username);
+        Result<Member> result = new Result<Member>();
+        if (member == null) {
+            result.setHasErrors(true);
+            result.setMessage("Invalid username");
+            return result;
+        }
+
+
+        if (!member.getPassword().equals(password)) {
+            result.setHasErrors(true);
+            result.setMessage("Wrong password");
+            return result;
+        }
+
+        result.setResponse(member);
+
+        return result;
+
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public
     @ResponseBody
@@ -38,7 +64,7 @@ public class MemberController {
         MemberDAO memberDAO = (MemberDAO) appContext.getBean("memberDao");
         MemberRoleDAO memberRoleDAO = (MemberRoleDAO) appContext.getBean("memberRoleDao");
         ShoppingCartDAO shoppingCartDAO = (ShoppingCartDAO) appContext.getBean("shoppingCartDao");
-        Result result = new Result();
+        Result<Member> result = new Result<Member>();
 
         if (member == null) {
             result.setHasErrors(true);
@@ -55,8 +81,7 @@ public class MemberController {
         shoppingCartDAO.save(new ShoppingCart(memberDAO.findById(id)));
 
         result.setHasErrors(false);
-
-        MailUtils.send(member.getEmail(), member);
+        result.setResponse(memberDAO.findById(id));
 
         return result;
     }

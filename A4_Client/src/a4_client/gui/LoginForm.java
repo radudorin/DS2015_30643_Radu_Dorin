@@ -155,9 +155,7 @@ public class LoginForm extends javax.swing.JFrame {
         passwordField = new javax.swing.JPasswordField();
         registerButton = new javax.swing.JButton();
 
-        registerForm.setMaximumSize(new java.awt.Dimension(450, 340));
         registerForm.setMinimumSize(new java.awt.Dimension(450, 340));
-        registerForm.setPreferredSize(new java.awt.Dimension(450, 340));
         registerForm.setResizable(false);
 
         registerDoneButton.setText("Done");

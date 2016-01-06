@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "member_role", uniqueConstraints = {
         @UniqueConstraint(columnNames = "role_name")})
-public class MemberRole extends BaseResponse {
+public class MemberRole {
 
     @Id
     @Column(name = "member_role")

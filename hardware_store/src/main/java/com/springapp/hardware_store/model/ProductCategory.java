@@ -1,4 +1,5 @@
 package com.springapp.hardware_store.model;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -9,8 +10,8 @@ import java.util.List;
  */
 @Entity
 @Table(name = "product_category", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "category_name") })
-public class ProductCategory extends BaseResponse {
+        @UniqueConstraint(columnNames = "category_name")})
+public class ProductCategory {
 
     @Id
     @Column(name = "product_category_id")
@@ -20,14 +21,17 @@ public class ProductCategory extends BaseResponse {
     private String name;
     @OneToMany
     @JsonIgnore
-    @JoinColumn(name="product_category_id")
+    @JoinColumn(name = "product_category_id")
     List<Product> products;
+    @Column(name = "image_url")
+    private String imageUrl;
 
     public ProductCategory() {
     }
 
-    public ProductCategory(String name) {
+    public ProductCategory(String name, String imageUrl) {
         this.name = name;
+        this.imageUrl = imageUrl;
     }
 
     public int getId() {
@@ -44,5 +48,13 @@ public class ProductCategory extends BaseResponse {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

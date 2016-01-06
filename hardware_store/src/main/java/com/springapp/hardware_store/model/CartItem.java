@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "cart_item")
-public class CartItem extends BaseResponse {
+public class CartItem {
 
     @Id
     @Column(name = "order_item_id")

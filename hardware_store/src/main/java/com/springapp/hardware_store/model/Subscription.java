@@ -8,10 +8,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "subscription")
 
-public class Subscription extends BaseResponse {
+public class Subscription {
 
     @Id
-    @Column(name = "shopping_cart_id")
+    @Column(name = "subscription_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @OneToOne

@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "rating")
-public class Rating extends BaseResponse {
+public class Rating {
 
     @Id
     @Column(name = "rating_id")

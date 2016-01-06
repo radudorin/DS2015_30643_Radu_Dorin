@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "product" , uniqueConstraints = {
         @UniqueConstraint(columnNames = "product_name") })
-public class Product extends BaseResponse {
+public class Product {
 
     @Id
     @Column(name = "product_id")

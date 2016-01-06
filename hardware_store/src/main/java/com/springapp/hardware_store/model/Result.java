@@ -1,31 +1,36 @@
 package com.springapp.hardware_store.model;
 
+import java.io.Serializable;
+
 /**
  * Created by radud on 03/12/2015.
  */
-public class Result {
+public class Result<T> implements Serializable {
 
     private boolean hasErrors;
 
     private String message;
 
-    private BaseResponse response;
+    private T response;
 
-    public Result(boolean hasErrors, String message, BaseResponse response) {
+    public Result() {
+    }
+
+    public Result(boolean hasErrors, String message, T response) {
         this.hasErrors = hasErrors;
         this.message = message;
         this.response = response;
     }
 
-    public BaseResponse getResponse() {
+    public T getResponse() {
         return response;
     }
 
-    public void setResponse(BaseResponse response) {
+    public void setResponse(T response) {
         this.response = response;
     }
 
-    public boolean hasErrors() {
+    public boolean getHasErrors() {
         return hasErrors;
     }
 

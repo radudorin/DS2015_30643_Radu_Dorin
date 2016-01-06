@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "price_items")
-public class PriceItem extends BaseResponse {
+public class PriceItem {
 
     @Id
     @Column(name = "price_item_id")

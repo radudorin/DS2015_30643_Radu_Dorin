@@ -1,7 +1,5 @@
 package com.springapp.hardware_store.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +9,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "orders")
-public class Order extends BaseResponse {
+public class Order {
 
     @Id
     @Column(name = "order_id")

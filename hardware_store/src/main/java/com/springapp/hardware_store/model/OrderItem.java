@@ -3,14 +3,13 @@ package com.springapp.hardware_store.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by radud on 22/11/2015.
  */
 @Entity
 @Table(name = "order_item")
-public class OrderItem extends BaseResponse {
+public class OrderItem {
 
     @Id
     @Column(name = "order_item_id")

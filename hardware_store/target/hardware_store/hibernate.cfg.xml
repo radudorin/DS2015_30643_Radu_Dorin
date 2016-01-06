@@ -22,6 +22,7 @@
         <mapping class="com.springapp.hardware_store.model.Rating"/>
         <mapping class="com.springapp.hardware_store.model.ShoppingCart"/>
         <mapping class="com.springapp.hardware_store.model.Order"/>
+        <mapping class="com.springapp.hardware_store.model.Subscription"/>
 
     </session-factory>
 </hibernate-configuration>

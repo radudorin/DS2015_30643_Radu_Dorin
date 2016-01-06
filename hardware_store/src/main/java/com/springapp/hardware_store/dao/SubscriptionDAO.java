@@ -19,6 +19,8 @@ public interface SubscriptionDAO {
 
     public Subscription getByField(String fieldName, String fieldValue);
 
+    public void delete(int productId, int memberId);
+
     public List<Subscription> getSubscriptionsForProduct(int id);
 
 }

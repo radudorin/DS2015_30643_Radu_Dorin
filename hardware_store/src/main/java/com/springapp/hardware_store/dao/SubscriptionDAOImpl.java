@@ -64,6 +64,21 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 
     @Override
     @Transactional
+    public void delete(int productId, int memberId) {
+        Session session = sessionFactory.getCurrentSession();
+
+        final Criteria criteria = session.createCriteria(Subscription.class)
+                .createAlias("product", "p")
+                .createAlias("member", "m")
+                .add(Restrictions.eq("m.id", memberId))
+                .add(Restrictions.eq("p.id", productId));
+
+        Subscription subscription = (Subscription) criteria.uniqueResult();
+        session.delete(subscription);
+    }
+
+    @Override
+    @Transactional
     public List<Subscription> getSubscriptionsForProduct(int id) {
         Session session = sessionFactory.getCurrentSession();
 
@@ -78,5 +93,6 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 
         return subscriptions;
     }
+
 
 }

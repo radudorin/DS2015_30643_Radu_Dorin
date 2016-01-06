@@ -107,4 +107,9 @@
         </constructor-arg>
     </bean>
 
+    <bean id="subscriptionDao" class="com.springapp.hardware_store.dao.SubscriptionDAOImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory"/>
+        </constructor-arg>
+    </bean>
 </beans>
