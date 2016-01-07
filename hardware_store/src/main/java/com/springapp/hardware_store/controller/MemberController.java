@@ -122,36 +122,40 @@ public class MemberController {
     @RequestMapping(value = "/shoppingCart/get/{id}", method = RequestMethod.GET)
     public
     @ResponseBody
-    ShoppingCart getShopingCart(@PathVariable("id") int id) {
+    Result<ShoppingCart> getShopingCart(@PathVariable("id") int id) {
         ShoppingCartDAO shoppingCartDAO = (ShoppingCartDAO) appContext.getBean("shoppingCartDao");
         ShoppingCart shoppingCart = shoppingCartDAO.getShoppingCartForMember(id);
 
-        return shoppingCart;
+        Result<ShoppingCart> result = new Result<ShoppingCart>();
+
+        if (shoppingCart == null) {
+            result.setHasErrors(true);
+            result.setMessage("Shopping cart is null");
+            return result;
+        }
+
+        result.setResponse(shoppingCart);
+
+        return result;
     }
 
     @RequestMapping(value = "/orders/get/{id}", method = RequestMethod.GET)
     public
     @ResponseBody
-    List<Order> getOrders(@PathVariable("id") int id) {
+    Result<List<Order>> getOrders(@PathVariable("id") int id) {
         OrderDAO orderDao = (OrderDAO) appContext.getBean("orderDao");
         List<Order> orders = orderDao.getOrdersForMember(id);
 
-        return orders;
-    }
+        Result<List<Order>> result = new Result<List<Order>>();
 
-//    @RequestMapping(value = "/orders/get/{id}", method = RequestMethod.GET)
-//    public
-//    @ResponseBody
-//    Result placeOrder(@PathVariable("id") int id, @RequestBody Date deliveryDate) {
-//        ShoppingCartDAO shoppingCartDAO = (ShoppingCartDAO) appContext.getBean("shoppingCartDao");
-//        ShoppingCart shoppingCart = shoppingCartDAO.getShoppingCartForMember(id);
-//
-//        shoppingCart.getCartItems();
-//
-//        Result result = new Result();
-//        result.setHasErrors(false);
-//        result.setMessage("Succes");
-//
-//        return result;
-//    }
+        if (orders == null || orders.isEmpty()) {
+            result.setHasErrors(true);
+            result.setMessage("No orders found.");
+            return result;
+        }
+
+        result.setResponse(orders);
+
+        return result;
+    }
 }

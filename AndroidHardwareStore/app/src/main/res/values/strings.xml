@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">AndroidHardwareStore</string>
+
+    <string-array name="home_left_drawer_items">
+        <item>Categories</item>
+        <item>Cart</item>
+        <item>Orders</item>
+        <item>Subscriptions</item>
+        <item>Settings</item>
+        <item>Logout</item>
+    </string-array>
+
+    <array name="home_left_drawer_icons">
+        <item>@drawable/home_left_menu_categories</item>
+        <item>@drawable/home_left_menu_cart</item>
+        <item>@drawable/home_left_menu_orders</item>
+        <item>@drawable/home_left_menu_subscriptions</item>
+        <item>@drawable/home_left_menu_settings</item>
+        <item>@drawable/home_left_menu_signout</item>
+    </array>
+
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
+
 </resources>

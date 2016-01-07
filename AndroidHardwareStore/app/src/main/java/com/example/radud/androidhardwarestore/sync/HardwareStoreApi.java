@@ -1,10 +1,12 @@
 package com.example.radud.androidhardwarestore.sync;
 
 import com.example.radud.androidhardwarestore.model.Member;
+import com.example.radud.androidhardwarestore.model.Order;
 import com.example.radud.androidhardwarestore.model.Product;
 import com.example.radud.androidhardwarestore.model.ProductCategory;
 import com.example.radud.androidhardwarestore.model.Rating;
 import com.example.radud.androidhardwarestore.model.Result;
+import com.example.radud.androidhardwarestore.model.ShoppingCart;
 
 import java.util.List;
 
@@ -45,4 +47,10 @@ public interface HardwareStoreApi {
 
     @POST("/member/register")
     void register(@Body Member member, Callback<Result<Member>> callback);
+
+    @GET("/member/shoppingCart/get/{id}")
+    void getShoppingCart(@Path("id") int memberId, Callback<Result<ShoppingCart>> resultCallback);
+
+    @GET("/member/orders/get/{id}")
+    void getOrders(@Path("id") int memberId, Callback<Result<List<Order>>> resultCallback);
 }

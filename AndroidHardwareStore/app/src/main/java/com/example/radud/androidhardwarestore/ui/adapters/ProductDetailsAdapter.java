@@ -1,6 +1,9 @@
 package com.example.radud.androidhardwarestore.ui.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,6 +99,11 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter {
             super(itemView);
             ButterKnife.bind(this, itemView);
             mRatingBar.setIsIndicator(false);
+            mRatingBar.setMax(5);
+            mRatingBar.setNumStars(5);
+            mRatingBar.setStepSize(1f);
+            Drawable drawable = mRatingBar.getProgressDrawable();
+            drawable.setColorFilter(Color.parseColor("#ffd700"), PorterDuff.Mode.SRC_ATOP);
             mRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
                 @Override
                 public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -115,7 +123,6 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter {
         public RatingViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            mRating.setIsIndicator(true);
         }
     }
 

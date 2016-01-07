@@ -45,10 +45,10 @@
 
         <TextView
             android:id="@+id/pi_product_price"
-            android:layout_width="match_parent"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/pi_product_stock"
-            android:gravity="right"
+            android:layout_alignParentRight="true"
             android:text="Price : 2304$"
             android:textColor="@android:color/black"
             android:textSize="12sp"
@@ -56,14 +56,33 @@
 
         <TextView
             android:id="@+id/pi_product_stock"
-            android:layout_width="match_parent"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:gravity="right"
+            android:layout_alignParentRight="true"
             android:text="Stock : 5"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/pi_quantity_price_tv"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/quantity_price_background"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="2"
+            android:padding="2dp"
+            android:text="$36/$156.95"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

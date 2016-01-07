@@ -43,11 +43,9 @@
 
     <android.support.v7.widget.AppCompatRatingBar
         android:id="@+id/pii_rating_rb"
-        style="?android:attr/ratingBarStyle"
+        style="@style/Widget.AppCompat.RatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="5dp"
-        android:stepSize="1" />
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
