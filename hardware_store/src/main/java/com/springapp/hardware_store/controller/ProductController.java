@@ -2,6 +2,7 @@ package com.springapp.hardware_store.controller;
 
 import com.springapp.hardware_store.dao.*;
 import com.springapp.hardware_store.model.*;
+import com.springapp.hardware_store.requests.AddRatingHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -102,6 +103,26 @@ public class ProductController {
         return result;
     }
 
+    @RequestMapping(value = "/priceItem/get/{id}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Result<List<PriceItem>> getPriceItemsForProduct(@PathVariable("id") int id) {
+        PriceItemDAO priceItemDAO = (PriceItemDAO) appContext.getBean("priceItemDao");
+        List<PriceItem> priceItems = priceItemDAO.getPriceItemsForProduct(id);
+
+        Result<List<PriceItem>> result = new Result<List<PriceItem>>();
+
+        if (priceItems.isEmpty()) {
+            result.setHasErrors(false);
+            result.setMessage("PriceItems are empty");
+        }
+
+        result.setHasErrors(false);
+        result.setResponse(priceItems);
+
+        return result;
+    }
+
     @RequestMapping(value = "/rating/get/{id}", method = RequestMethod.GET)
     public
     @ResponseBody
@@ -125,10 +146,13 @@ public class ProductController {
     @RequestMapping(value = "/rating/add/{id}", method = RequestMethod.POST)
     public
     @ResponseBody
-    Result getRatingsForProduct(@RequestParam(value = "memberId") int memberId, @RequestBody Rating rating, @PathVariable("id") int id) {
+    Result getRatingsForProduct(@RequestBody AddRatingHolder holder, @PathVariable("id") int id) {
         RatingDAO ratingDAO = (RatingDAO) appContext.getBean("ratingDao");
         MemberDAO memberDAO = (MemberDAO) appContext.getBean("memberDao");
         ProductDAO productDAO = (ProductDAO) appContext.getBean("productDao");
+
+        Rating rating = holder.getRating();
+        int memberId = holder.getMemberId();
 
         rating.setMember(memberDAO.findById(memberId));
         rating.setProduct(productDAO.findById(id));
@@ -209,7 +233,6 @@ public class ProductController {
         result.setHasErrors(false);
         return result;
     }
-
 
 
 }

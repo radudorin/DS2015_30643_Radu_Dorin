@@ -11,7 +11,9 @@ import com.example.radud.androidhardwarestore.model.Product;
 import com.example.radud.androidhardwarestore.model.Rating;
 import com.example.radud.androidhardwarestore.model.Result;
 import com.example.radud.androidhardwarestore.sync.ApiHelper;
+import com.example.radud.androidhardwarestore.sync.requests.AddRatingHolder;
 import com.example.radud.androidhardwarestore.ui.adapters.ProductDetailsAdapter;
+import com.example.radud.androidhardwarestore.utils.SessionUtils;
 import com.example.radud.androidhardwarestore.utils.ToastUtils;
 
 import java.util.List;
@@ -32,6 +34,35 @@ public class ProductDetailsActivity extends AppCompatActivity {
     @Bind(R.id.apd_content_rv)
     RecyclerView mContentRV;
 
+    private int mId;
+
+    ProductDetailsAdapter.ProductListener mListener = new ProductDetailsAdapter.ProductListener() {
+        @Override
+        public void onRatingAdded(int productId, String comment, float rating) {
+            AddRatingHolder holder = new AddRatingHolder(new Rating((int) rating, comment), SessionUtils.getUserId());
+            ApiHelper.getApi().addRating(productId, holder, new Callback<Result>() {
+                @Override
+                public void success(Result result, Response response) {
+                    if (result.getHasErrors()) {
+                        ToastUtils.showError(ProductDetailsActivity.this, result.getMessage());
+                    } else {
+                        loadRatings(mId);
+                    }
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+
+                }
+            });
+        }
+
+        @Override
+        public void onAddToCart(int productId, int quantity) {
+
+        }
+    };
+
     private ProductDetailsAdapter mProductAdapter;
 
     private boolean mProductLoaded = false;
@@ -48,6 +79,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         if (getIntent() != null) {
             id = getIntent().getIntExtra(PRODUCT_ID_KEY, -1);
         }
+        mId = id;
         loadProduct(id);
         loadRatings(id);
     }
@@ -88,7 +120,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     mRatings = listResult.getResponse();
                     mRatingsLoaded = true;
                     Log.e("tagtag", "ratings loaded");
-                    checkIfLoaded();
+                    if (mProductAdapter == null) {
+                        checkIfLoaded();
+                    } else {
+                        mProductAdapter.setRatings(listResult.getResponse());
+                    }
                 }
             }
 
@@ -101,7 +137,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private void setUpRV() {
         mContentRV.setLayoutManager(new LinearLayoutManager(ProductDetailsActivity.this));
-        mProductAdapter = new ProductDetailsAdapter(mProduct, mRatings);
+        mProductAdapter = new ProductDetailsAdapter(this, mProduct, mRatings, mListener);
         mContentRV.setAdapter(mProductAdapter);
         mProductAdapter.notifyDataSetChanged();
     }

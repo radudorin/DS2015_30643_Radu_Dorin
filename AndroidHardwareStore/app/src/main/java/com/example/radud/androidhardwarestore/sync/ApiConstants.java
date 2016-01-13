@@ -1,8 +1,5 @@
 package com.example.radud.androidhardwarestore.sync;
 
-/**
- * Created by profiralexandr on 10/11/15.
- */
 public class ApiConstants {
 
     public static final int CLIENT_ROLE = 2;

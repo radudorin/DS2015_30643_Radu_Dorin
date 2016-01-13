@@ -1,12 +1,15 @@
 package com.example.radud.androidhardwarestore.sync;
 
+import com.example.radud.androidhardwarestore.model.CartItem;
 import com.example.radud.androidhardwarestore.model.Member;
 import com.example.radud.androidhardwarestore.model.Order;
+import com.example.radud.androidhardwarestore.model.PriceItem;
 import com.example.radud.androidhardwarestore.model.Product;
 import com.example.radud.androidhardwarestore.model.ProductCategory;
 import com.example.radud.androidhardwarestore.model.Rating;
 import com.example.radud.androidhardwarestore.model.Result;
 import com.example.radud.androidhardwarestore.model.ShoppingCart;
+import com.example.radud.androidhardwarestore.sync.requests.AddRatingHolder;
 
 import java.util.List;
 
@@ -23,6 +26,12 @@ import retrofit.http.Path;
  */
 public interface HardwareStoreApi {
 
+    @POST("/member/shoppingCart/add/{id}")
+    void addCartItem(@Path("id") int memberId, @Body CartItem cartItem, Callback<Result> callback);
+
+    @POST("/product/rating/add/{id}")
+    void addRating(@Path("id") int productId, @Body AddRatingHolder holder, Callback<Result> callback);
+
     @GET("/member/get/{id}")
     void getMember(@Path("id") int memberId, Callback<Member> member);
 
@@ -34,6 +43,9 @@ public interface HardwareStoreApi {
 
     @GET("/product/rating/get/{id}")
     void getRatings(@Path("id") int productId, Callback<Result<List<Rating>>> ratings);
+
+    @GET("/product/priceItem/get/{id}")
+    void getPriceItems(@Path("id") int productId, Callback<Result<List<PriceItem>>> priceItems);
 
     @GET("/product/get")
     void getProducts(Callback<Result<List<Product>>> products);

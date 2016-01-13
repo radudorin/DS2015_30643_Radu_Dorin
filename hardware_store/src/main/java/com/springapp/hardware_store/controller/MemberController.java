@@ -139,6 +139,29 @@ public class MemberController {
         return result;
     }
 
+    @RequestMapping(value = "/shoppingCart/add/{id}", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    Result<ShoppingCart> addCartItem(@PathVariable("id") int id, @RequestBody CartItem cartItem) {
+        ShoppingCartDAO shoppingCartDAO = (ShoppingCartDAO) appContext.getBean("shoppingCartDao");
+        ShoppingCart shoppingCart = shoppingCartDAO.getShoppingCartForMember(id);
+
+        Result<ShoppingCart> result = new Result<ShoppingCart>();
+
+        if (shoppingCart == null) {
+            result.setHasErrors(true);
+            result.setMessage("Shopping cart is null");
+            return result;
+        }
+
+        shoppingCart.getCartItems().add(cartItem);
+        shoppingCartDAO.save(shoppingCart);
+
+        result.setResponse(shoppingCart);
+
+        return result;
+    }
+
     @RequestMapping(value = "/orders/get/{id}", method = RequestMethod.GET)
     public
     @ResponseBody

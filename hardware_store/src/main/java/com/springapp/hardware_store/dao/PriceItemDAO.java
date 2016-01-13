@@ -20,4 +20,6 @@ public interface PriceItemDAO {
 
     public PriceItem getByField(String fieldName, String fieldValue);
 
+    public List<PriceItem> getPriceItemsForProduct(int id);
+
 }

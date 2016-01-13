@@ -60,4 +60,21 @@ public class PriceItemDAOImpl implements PriceItemDAO {
                 uniqueResult();
         return priceItem;
     }
+
+    @Override
+    @Transactional
+    public List<PriceItem> getPriceItemsForProduct(int id) {
+        Session session = sessionFactory.getCurrentSession();
+
+        final Criteria criteria = session.createCriteria(PriceItem.class)
+                .createAlias("product", "p")
+                .add(Restrictions.eq("p.id", id));
+
+        List<PriceItem> priceItems = criteria.list();
+        if (priceItems.isEmpty()) {
+            return null;
+        }
+
+        return priceItems;
+    }
 }

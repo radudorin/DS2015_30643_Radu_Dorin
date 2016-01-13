@@ -48,4 +48,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal" />
 
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/pii_price_chart_lc"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
+
 </LinearLayout>

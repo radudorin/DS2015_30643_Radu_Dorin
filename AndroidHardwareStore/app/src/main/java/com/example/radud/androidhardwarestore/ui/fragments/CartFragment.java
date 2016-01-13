@@ -1,18 +1,26 @@
 package com.example.radud.androidhardwarestore.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.radud.androidhardwarestore.R;
 import com.example.radud.androidhardwarestore.model.Result;
 import com.example.radud.androidhardwarestore.model.ShoppingCart;
 import com.example.radud.androidhardwarestore.sync.ApiHelper;
+import com.example.radud.androidhardwarestore.ui.activities.ProductsActivity;
+import com.example.radud.androidhardwarestore.ui.adapters.CartItemsAdapter;
+import com.example.radud.androidhardwarestore.ui.interfaces.OnItemSelectedListener;
 import com.example.radud.androidhardwarestore.utils.SessionUtils;
 import com.example.radud.androidhardwarestore.utils.ToastUtils;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -23,7 +31,23 @@ import retrofit.client.Response;
  */
 public class CartFragment extends BaseFragment {
 
-    ShoppingCart mShoppingCart;
+    @Bind(R.id.fc_content_rv)
+    RecyclerView mContentRV;
+    @Bind(R.id.fc_total)
+    TextView mTotalTV;
+    @Bind(R.id.fc_total_items)
+    TextView mTotalItemsTV;
+
+    private ShoppingCart mShoppingCart;
+    OnItemSelectedListener mListener = new OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(int id) {
+            Intent intent = new Intent(getActivity(), ProductsActivity.class);
+            intent.putExtra(ProductsActivity.CATEGORIES_ID_KEY, id);
+            startActivity(intent);
+        }
+    };
+    CartItemsAdapter mCartItemsAdapter;
 
     @Override
     public String getTitle() {
@@ -64,7 +88,18 @@ public class CartFragment extends BaseFragment {
         });
     }
 
+    private void setUpRV() {
+        mContentRV.setHasFixedSize(true);
+        mContentRV.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mCartItemsAdapter = new CartItemsAdapter(mShoppingCart.getCartItems(), mListener);
+        mContentRV.setAdapter(mCartItemsAdapter);
+    }
+
     private void setViewsForShoppingCart() {
+
+        setUpRV();
+        mTotalTV.setText("Total : " + String.valueOf(mShoppingCart.getTotal()));
+        mTotalItemsTV.setText("Total items : " + String.valueOf(mShoppingCart == null ? 0 : mShoppingCart.getCartItems().size()));
 
     }
 

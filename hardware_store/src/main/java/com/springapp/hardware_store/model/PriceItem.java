@@ -1,6 +1,5 @@
 package com.springapp.hardware_store.model;
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 /**
  * Created by radud on 22/11/2015.
@@ -19,12 +18,12 @@ public class PriceItem {
     @Column(name = "product_price")
     private double price;
     @Column(name = "modification_date")
-    private Timestamp modificationDate;
+    private String modificationDate;
 
     public PriceItem() {
     }
 
-    public PriceItem(Product product, double price, Timestamp modificationDate) {
+    public PriceItem(Product product, double price, String modificationDate) {
         this.product = product;
         this.price = price;
         this.modificationDate = modificationDate;
@@ -54,11 +53,11 @@ public class PriceItem {
         this.price = price;
     }
 
-    public Timestamp getModificationDate() {
+    public String getModificationDate() {
         return modificationDate;
     }
 
-    public void setModificationDate(Timestamp modificationDate) {
+    public void setModificationDate(String modificationDate) {
         this.modificationDate = modificationDate;
     }
 }
